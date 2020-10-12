@@ -1,0 +1,32 @@
+﻿@model ITSWebMgmt.WebMgmtErrors.WebMgmtErrorList
+
+<div>
+    <h2>Warnings</h2>
+    @foreach (var error in Model.CurrentErrors) // NB: Razor kan ikke finde ud af explicit typeinferens på abstrakte klasser, så er nødt til at deklarere errorsne som "var" i stedet for "WebMgmtError"
+    {
+        @if (error.HaveError())
+        {
+            <div class="ui @error.Severeness.ToString().ToLower() message" runat="server">
+                <div class="header">@error.Heading</div>
+                <p>@error.Description</p>
+                @foreach (var button in error.Buttons)
+                {
+                    <button id=@button.FunctionName>@button.ButtonDescription</button>
+                    <script>
+                          $("#@button.FunctionName").click(function (){sendPostRequest("@button.FunctionName")});
+                    </script>
+                }
+                @if (error.GetType().IsSubclassOf(typeof(MacWebMgmtError)))
+                {
+                    string hyperlink = ((MacWebMgmtError)error).CaseLink;
+                    <a href=@hyperlink>Link to case</a>
+                }
+</div>
+            <!--Hvis link skal med, skal det enten ligge i WebMgmtError eller også skal vi lave et custom template-->
+        }
+        else
+        {
+            <p>No warnings found</p>
+        }
+  }
+</div>

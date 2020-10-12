@@ -78,7 +78,10 @@
     else
     {
         <div runat="server" id="warningsAndErrorDIV">
-            @Html.Raw(Model.ErrorCountMessage)
+            @if (Model.ErrorList != null && Model.ErrorList.CurrentlyHasErrors) //null check hvis der kun er partiel info om computer
+            {
+                @Html.Partial("WebMgmtErrors/ErrorCountMessage", Model.ErrorList);
+            }
         </div>
         <div class="ui grid">
             <div class="four wide column">

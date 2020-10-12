@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using ITSWebMgmt.WebMgmtErrors;
+using System.Collections.Generic;
 
 namespace ITSWebMgmt.Models
 {
@@ -16,6 +17,7 @@ namespace ITSWebMgmt.Models
         public string ErrorCountMessage { get; set; }
         public string ErrorMessages { get; set; }
         public string ResultError { get; set; }
+        public WebMgmtErrorList ErrorList { get; set; }
         public virtual bool ComputerFound { get; set; }
 
 

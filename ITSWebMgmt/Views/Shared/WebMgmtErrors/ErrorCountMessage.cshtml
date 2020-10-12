@@ -1,0 +1,21 @@
+﻿@model ITSWebMgmt.WebMgmtErrors.WebMgmtErrorList
+@{ 
+    string messageType = "";
+    string heading = "";
+    switch (Model.MostImportantCurrentSeverity)
+    {
+        case ITSWebMgmt.WebMgmtErrors.Severity.Error:
+            messageType = "negative"; heading = "Errors"; break;
+        case ITSWebMgmt.WebMgmtErrors.Severity.Warning:
+            messageType = "warning"; heading = "Warnings"; break;
+        case ITSWebMgmt.WebMgmtErrors.Severity.Info:
+            messageType = "info"; heading = "Infos"; break;
+    }
+
+}
+
+<div class="ui @messageType message" runat="server">
+    <div class="header">@heading found</div>
+    <p>Found @Model.getSeverityCount(ITSWebMgmt.WebMgmtErrors.Severity.Error) errors, @Model.getSeverityCount(ITSWebMgmt.WebMgmtErrors.Severity.Warning) warnings, and @Model.getSeverityCount(ITSWebMgmt.WebMgmtErrors.Severity.Info) infos.</p>
+    <!--ErrorCount[0] er errors, [1] er warnings and [2] er info. Razor er ikke så glad for at indeksere på enums-->
+</div>

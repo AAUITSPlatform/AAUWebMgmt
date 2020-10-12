@@ -130,9 +130,15 @@
     }
     else
     {
+
+
         <div runat="server" id="warningsAndErrorDIV">
-            @Html.Raw(Model.ErrorCountMessage)
+            @if (Model.ErrorList != null && Model.ErrorList.CurrentlyHasErrors) //null check så vi ikke crasher
+            {
+                @Html.Partial("WebMgmtErrors/ErrorCountMessage", Model.ErrorList);
+            }
         </div>
+
         <h2>@Html.DisplayFor(model => model.DisplayName)</h2>
         <div class="ui grid">
             <div class="four wide column">

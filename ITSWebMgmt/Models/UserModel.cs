@@ -10,6 +10,7 @@ using System.Web;
 using Microsoft.Exchange.WebServices.Data;
 using ITSWebMgmt.Connectors;
 using static ITSWebMgmt.Connectors.NetaaudkConnector;
+using ITSWebMgmt.WebMgmtErrors;
 
 namespace ITSWebMgmt.Models
 {
@@ -120,6 +121,7 @@ namespace ITSWebMgmt.Models
         public ServiceManagerModel ServiceManager { get; set; }
         public string ErrorMessages { get; set; }
         public string ResultError { get; set; }
+        public WebMgmtErrorList ErrorList { get; set; }
         public string UserName { get; set; } = "mhsv16@its.aau.dk";
         public string ErrorCountMessage { get; set; }
         public string SCSMUserID { get; set; }
