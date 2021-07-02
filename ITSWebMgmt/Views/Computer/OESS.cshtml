@@ -4,3 +4,8 @@
 @await Html.PartialAsync("RotatedTableView", Model.OESSTables.InfoTable.RotateTable())
 @await Html.PartialAsync("TableView", Model.OESSTables.TransactionTable)
 @await Html.PartialAsync("TableView", Model.OESSResponsiblePersonTable)
+<input type="button" value="Mark as trashed/marker som afmeldt" onclick="window.open('/TrashRequests/Create?data=@HttpUtility.JavaScriptStringEncode(Model.ComputerName)')">
+<p>Opens a form in a new tab</p>
+<br />
+<br />
+
